@@ -1,0 +1,19 @@
+.card {
+	border: 2px solid #513809;
+	margin: 10px 5px 10px 5px;
+	border-radius: 15px;
+	min-height: 300px;
+	box-shadow: 10px 10px 5px #888888;
+	padding: 10px 10px 10px 10px;
+	background-color: #9ACD32;
+}
+h1 {
+	color: white;
+	text-align: center;
+}
+h4 {
+	text-align: right;
+}
+p {
+	text-align: left;
+}
