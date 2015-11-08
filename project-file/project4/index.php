@@ -16,8 +16,8 @@
 			$xml = simplexml_load_file("../../plant_catalog.xml");
 
 			$fp = fopen('plants.json', 'c+');
-    		fwrite($fp, json_encode($xml));
-    		fclose($fp);
+			fwrite($fp, json_encode($xml));
+			fclose($fp);
 
 			?>
 		</div>

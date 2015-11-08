@@ -1,19 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<html>
-  <head>
+<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Project 2</title>
-	<!-- <link href="http://fonts.googleapis.com/css?family=Lato:100,300" rel="stylesheet"> -->
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="css/mystyle.css">
-  </head>
-  <body>
-    <p>
+</head>
+<body>
+	<p>
 		<?php
-		//$xml = simplexml_load_string(file_get_contents("../../plant_catalog.xml"));
 		$plants = json_decode(
 			json_encode(
 				simplexml_load_string(file_get_contents("../../plant_catalog.xml")
@@ -30,6 +27,6 @@
 			echo '</div></div></div>';
 		}
 		?>
-    </p>
-  </body>
+	</p>
+</body>
 </html>

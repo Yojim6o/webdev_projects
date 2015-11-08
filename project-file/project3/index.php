@@ -30,9 +30,7 @@
 				$theType = null;
 			}
 
-			$theType = (isset($_GET['type']) ? $_GET['type'] : null);
-
-			$theType = htmlspecialchars($_GET["type"]);
+			// $theType = (isset($_GET['type']) ? $_GET['type'] : null);
 
 			foreach($plants['PLANT'] as $a_plant) {
 				if (strpos($a_plant['LIGHT'], $theType) || $theType == "alldata") {
