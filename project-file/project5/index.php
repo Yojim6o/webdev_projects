@@ -17,20 +17,32 @@
 		<div id="appendToMe"></div>
 		<script type="text/javascript">
 
+			//globally defines Plants.
 			var Plants;
-
 			function reqListener() {
 				Plants = Plants || JSON.parse(this.responseText)['PLANT'];
 			}
 
+			//creates the containers for each plant that is called.
 			function createCards(light) {
 				if (typeof(light) === 'undefined') {
 					light = 'All';
 				}
-				//remove cards.
+
+				//removes all cards before calling new cards in the for loop below.
+				function removeElementsByClass(className){
+					var elements = document.getElementsByClassName(className);
+					while(elements.length > 0){
+						elements[0].parentNode.removeChild(elements[0]);
+					}
+				}
+				removeElementsByClass('results');
+
+				//loops through the json object to populate new cards.
 				for (var plant = 0; plant < Plants.length; plant++) {
 					if (Plants[plant]['LIGHT'] === light || light === 'All') {
 						var node = document.createElement('div');
+						node.className = 'results';
 						var mkUp =  '<div class="col-md-4"><div class="card"><h1>' 
 						+ Plants[plant]['COMMON'] + '</h1><div> <p>Botanical: ' 
 						+ Plants[plant]['BOTANICAL'] + '</p> <p>Zone: ' + Plants[plant]['ZONE'] 
@@ -47,7 +59,7 @@
 				}
 			}
 
-			//need to move this to an on load type function.  want an init function and loadlistener function.
+			//initializes the json file.
 			function init() {
 				var oReq = new XMLHttpRequest();
 				oReq.addEventListener("load", reqListener);
@@ -55,6 +67,7 @@
 				oReq.send();
 			}
 
+			//add event listeners for the buttons
 			function addAllListeners() {
 				var sunny = document.getElementById('sunny');
 				var shady = document.getElementById('shady');
@@ -73,8 +86,10 @@
 				}, false); 
 			}
 
+			//call the init function
 			init();
 
+			//call the addAllListeners after the page is loaded.
 			setTimeout(function() {
 				addAllListeners();
 			}, 16);
