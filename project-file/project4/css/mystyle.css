@@ -16,10 +16,16 @@
 	background-color: #8B7765;
 	color: white;
 }
+body {
+	background-color: #eee;
+}
 h1 {
 	color: white;
 	text-align: center;
 }
-body {
-	background-color: #eee;
+h4 {
+	text-align: right;
+}
+p {
+	text-align: left;
 }

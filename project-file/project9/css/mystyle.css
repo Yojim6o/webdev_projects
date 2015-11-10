@@ -16,6 +16,21 @@
 	background-color: #8B7765;
 	color: white;
 }
+.purple {
+	background-color: #BE8CB5;
+}
+.blue {
+	background-color: #7F7FFF;
+}
+.black {
+	background-color: #000000;
+}
+#day {
+	color: black;
+}
+#evening {
+	color: white;
+}
 body {
 	background-color: #eee;
 }
