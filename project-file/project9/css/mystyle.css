@@ -7,39 +7,23 @@
 	padding: 10px 10px 10px 10px;
 	background-color: #9ACD32;
 }
-.header {
-	margin:0 auto;
-	margin-top: 60px;
-	text-align: center;
-}
-.btn {
-	background-color: #8B7765;
+.card h1 {
 	color: white;
 }
-.purple {
+.morning {
 	background-color: #BE8CB5;
-}
-.blue {
-	background-color: #7F7FFF;
-}
-.black {
-	background-color: #000000;
-}
-#day {
 	color: black;
 }
-#evening {
-	color: white;
+.day {
+	background-color: #7F7FFF;
+	color: black;
 }
-body {
-	background-color: #eee;
+.night {
+	background-color: #000000;
+	color: white;
 }
 h1 {
-	color: white;
 	text-align: center;
-}
-h4 {
-	text-align: right;
 }
 p {
 	text-align: left;

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Project 9</title>
+		<link rel="stylesheet" href="./css/bootstrap.css" />
+		<link rel="stylesheet" href="./css/mystyle.css" />
+	</head>
+	<body>
+		<div id="container"></div>
+		<script type="text/javascript">
+
+			//creates the page which includes time of day, a message, and cards with plants and their descriptions
+			function createPage(Plants) {
+				var Plants = Plants['PLANT'];
+				var date = new Date();
+				var time = date.getHours();
+				var minutes = date.getMinutes();
+
+				//puts a zero in front of a single digit minute.
+				function addZero(i) {
+					if (i < 10) {
+						i = "0" + i;
+					}
+					return i;
+				}
+				//converts time to non-Military
+				function nonMilitary(i) {
+					if (i > 12) {
+						return i-12;
+					} else {
+						return i;
+					}
+				}
+				//adds AM or PM to the time
+				function am_pm(i) {
+					if (i < 12) {
+						return ' AM';
+					} else {
+						return ' PM';
+					}
+				}
+
+				function createCard(plant){
+					var frame = document.createElement('div');
+						frame.className = 'col-md-4';
+					var card = document.createElement('div');
+						card.className = 'card';
+							
+						card.innerHTML =  '<h1>'
+						+ Plants[plant]['COMMON'] + '</h1><div> <p>Botanical: ' 
+						+ Plants[plant]['BOTANICAL'] + '</p> <p>Zone: ' + Plants[plant]['ZONE'] 
+						+ '</p> <p>Light: ' + Plants[plant]['LIGHT'] +'</p> <p>Price: ' 
+						+ Plants[plant]['PRICE'] + '</p> <p>Availability: ' 
+						+ Plants[plant]['AVAILABILITY'] +'</p> </div>';
+
+						frame.appendChild(card);
+						body.appendChild(frame);
+				}
+
+				//combines all of the time-formatting functions above
+				function formatTime() {
+					return nonMilitary(time) + ':' + addZero(minutes) + am_pm(time);
+				}
+
+				//declared variables to be used in the for loop below
+				var container = document.getElementById('container');
+				var body = document.createElement('div');
+
+				//if it's the morning(or 11:59PM), plants with node <LIGHT>'Sun or Shade' will generate
+				if (time < 10 || (time >= 23 && minutes >= 59)) {
+
+					container.className = 'morning';
+					body.innerHTML = '<h1>' + formatTime() + '<br>I am not a morning person.</h1>';
+
+					for (var plant = 0; plant < Plants.length; plant++) {
+						if (Plants[plant]['LIGHT'] === 'Sun or Shade') {
+							createCard(plant);
+						}
+					}
+					container.appendChild(body);
+
+				//if it's after 10 AM or before 6 PM, plants with node <LIGHT>'Shade' will generate
+				} else if (time < 18) {
+					container.className = 'day';
+					body.className = 'day';
+					body.innerHTML = '<h1>' + formatTime() + '<br>It is the afternoon, time to wake up.</h1>';
+
+					for (var plant = 0; plant < Plants.length; plant++) {
+						if (Plants[plant]['LIGHT'] === 'Shade') {
+							createCard(plant);
+						}
+					}
+					container.appendChild(body);
+
+				//if it's after 6 PM or before 11:59 PM, plants with node <LIGHT>'Mostly Shady' will generate
+				} else {
+					container.className = 'night';
+					body.innerHTML = '<h1>' + formatTime() + '<br>I am the night.</h1>';
+
+					for (var plant = 0; plant < Plants.length; plant++) {
+						if (Plants[plant]['LIGHT'] === 'Mostly Shady') {
+							createCard(plant);
+						}
+					}
+					container.appendChild(body);
+				}
+			}
+
+			//access the json
+			var xmlhttp = new XMLHttpRequest();
+			var url = "plants.json";
+			xmlhttp.onreadystatechange = function() {
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+				var myArr = JSON.parse(xmlhttp.responseText);
+					createPage(myArr);
+				}
+			}
+			xmlhttp.open("GET", url, true);
+			xmlhttp.send();
+
+		</script>
+	</body>
+</html>
