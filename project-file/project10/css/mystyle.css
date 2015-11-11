@@ -1,0 +1,30 @@
+.card {
+	border: 2px solid #513809;
+	margin: 10px 5px 10px 5px;
+	border-radius: 15px;
+	min-height: 380px;
+	box-shadow: 10px 10px 5px #888888;
+	padding: 10px 10px 10px 10px;
+	background-color: #9ACD32;
+}
+.card h1 {
+	color: white;
+}
+.morning {
+	background-color: #BE8CB5;
+	color: black;
+}
+.day {
+	background-color: #7F7FFF;
+	color: black;
+}
+.night {
+	background-color: #000000;
+	color: white;
+}
+h1 {
+	text-align: center;
+}
+p {
+	text-align: left;
+}

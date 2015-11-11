@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Project 10</title>
+		<link rel="stylesheet" href="./css/bootstrap.css" />
+		<link rel="stylesheet" href="./css/mystyle.css" />
+	</head>
+	<body>
+		<div id="appendToMe"></div>
+		<script type="text/javascript">
+
+			//array of light conditions and their url
+			var lightArray = {
+				"Mostly_Shady": "img/mostly-shady.png",
+				"Mostly_Sunny": "img/mostly-sunny.png", 
+				"Sun_or_Shade": "img/sun-or-shade.png",  
+				"Sunny": "img/sunny.png", 
+				"Shade": "img/shade.png", 
+				"Sun": "img/sun.png"
+			};
+
+			//Populate plants with pictures
+			function createPage(Plants) {
+				var Plants = Plants['PLANT'];
+				for (var plant = 0; plant < Plants.length; plant++) {
+					var node = document.createElement('div');
+					var mkUp =  '<div class="col-md-4"><div class="card"><h1>' 
+					
+						+ Plants[plant]['COMMON'] + '</h1><div> <p>Botanical: ' 
+						+ Plants[plant]['BOTANICAL'] + '</p> <p>Zone: ' + Plants[plant]['ZONE'] 
+						+ '</p> <p>Light: ' 
+						
+						+ Plants[plant]['LIGHT'] 
+						+ '<img src="' + lightArray[((Plants[plant]['LIGHT']).split(' ').join('_'))] + '">'
+
+						+'</p> <p>Price: ' 
+						+ Plants[plant]['PRICE'] + '</p> <p>Availability: ' 
+						+ Plants[plant]['AVAILABILITY'] +'</p> </div></div></div>';
+
+					node.innerHTML = mkUp;
+
+					var el = document.getElementById('appendToMe');
+
+					el.appendChild(node);
+				}
+			};
+
+			//access the json
+			var xmlhttp = new XMLHttpRequest();
+			var url = "plants.json";
+			xmlhttp.onreadystatechange = function() {
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+				var myArr = JSON.parse(xmlhttp.responseText);
+					createPage(myArr);
+				}
+			}
+			xmlhttp.open("GET", url, true);
+			xmlhttp.send();
+
+		</script>
+	</body>
+</html>
