@@ -27,18 +27,24 @@
 				var Plants = Plants['PLANT'];
 				for (var plant = 0; plant < Plants.length; plant++) {
 					var node = document.createElement('div');
-					var mkUp =  '<div class="col-md-4"><div class="card"><h1>' 
-					
-						+ Plants[plant]['COMMON'] + '</h1><div> <p>Botanical: ' 
-						+ Plants[plant]['BOTANICAL'] + '</p> <p>Zone: ' + Plants[plant]['ZONE'] 
-						+ '</p> <p>Light: ' 
-						
-						+ Plants[plant]['LIGHT'] 
-						+ '<img src="' + lightArray[((Plants[plant]['LIGHT']).split(' ').join('_'))] + '">'
-
-						+'</p> <p>Price: ' 
-						+ Plants[plant]['PRICE'] + '</p> <p>Availability: ' 
-						+ Plants[plant]['AVAILABILITY'] +'</p> </div></div></div>';
+					var mkUp =  '<div class="col-md-4">' 
+						+ '<div class="card">' 
+							+ '<div class="title">'
+								+ '<h1>' + Plants[plant]['COMMON'] + '</h1>' 
+							+ '</div>'
+							+ '<br>'
+							+ '<div class="stats">' 
+								+ '<p>Botanical: ' + Plants[plant]['BOTANICAL'] + '</p>' 
+								+ '<p>Zone: ' + Plants[plant]['ZONE'] + '</p>' 
+								+ '<p>Price: ' + Plants[plant]['PRICE'] + '</p>' 
+								+ '<p>Availability: ' + Plants[plant]['AVAILABILITY'] + '</p>' 
+								+ '<p>Light: ' + Plants[plant]['LIGHT'] + '</p>'
+							+ '</div>'
+							+ '<div class="pictures">'
+								+ '<img src="' + lightArray[((Plants[plant]['LIGHT']).split(' ').join('_'))] + '">' 
+							+ '</div>' 
+						+ '</div>' 
+					+ '</div>';
 
 					node.innerHTML = mkUp;
 
